@@ -25,3 +25,7 @@ function normalizePort(val) {
 server.on("listening", () => {
   console.log("server is listening for requests on port ${server.address().port}");
 });
+
+app.listen(process.env.PORT || 3000, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
