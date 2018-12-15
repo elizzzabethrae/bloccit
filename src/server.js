@@ -7,7 +7,6 @@ app.set("port", port);
 const server = http.createServer(app);
 
 server.listen(port);
-//changed bc of error
 
 function normalizePort(val) {
   const port = parseInt(val, 10);
@@ -21,5 +20,5 @@ function normalizePort(val) {
 }
 
 server.on("listening", () => {
-  console.log("server is listening for requests on port ${server.address().port}");
+  console.log(`server is listening for requests on port ${server.address().port}`);
 });
