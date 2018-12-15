@@ -6,8 +6,7 @@ app.set("port", port);
 
 const server = http.createServer(app);
 
-server.listen(process.env.PORT || 5000);
-//changed to fix heroku
+server.listen(port);
 
 function normalizePort(val) {
   const port = parseInt(val, 10);
