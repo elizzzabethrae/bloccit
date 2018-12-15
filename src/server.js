@@ -6,7 +6,10 @@ app.set("port", port);
 
 const server = http.createServer(app);
 
-server.listen(port);
+server.listen(config.port, function () {
+  console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
+});
+//changed bc of error
 
 function normalizePort(val) {
   const port = parseInt(val, 10);
