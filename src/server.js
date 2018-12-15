@@ -6,9 +6,7 @@ app.set("port", port);
 
 const server = http.createServer(app);
 
-server.listen(config.port, function () {
-  console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
-});
+server.listen(port);
 //changed bc of error
 
 function normalizePort(val) {
@@ -24,8 +22,4 @@ function normalizePort(val) {
 
 server.on("listening", () => {
   console.log("server is listening for requests on port ${server.address().port}");
-});
-
-app.listen(process.env.PORT || 3000, function(){
-  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
