@@ -22,4 +22,16 @@ it("should return status code 200 and have 'Welcome to Bloccit' in the body of t
     });
 
   });
+
+  describe("GET /about", () => {
+
+    it("should contain the string `About Us` ", () => {
+      request.get(base, (err, res, about) => {
+        expect(about).toContain("About Us");
+
+        done();
+      });
+    });
+  });
+
 });
