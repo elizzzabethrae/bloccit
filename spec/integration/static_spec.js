@@ -8,15 +8,12 @@ describe("routes : static", () => {
   describe("GET /", () => {
 
 //#2
-it("should return status code 200 and have 'Welcome to Bloccit' in the body of the response", () => {
+it("should return status code 200 and have 'Welcome to Bloccit' in the body of the response", (done) => {
 
-//#3
       request.get(base, (err, res, body) => {
         expect(res.statusCode).toBe(200);
         expect(body).toContain("Welcome to Bloccit");
 
-
-//#4
         done();
       });
     });
@@ -25,9 +22,9 @@ it("should return status code 200 and have 'Welcome to Bloccit' in the body of t
 
   describe("GET /about", () => {
 
-    it("should contain the string `About Us` ", () => {
-      request.get(base, (err, res, about) => {
-        expect(about).toContain("About Us");
+    it("should contain the string `About Us` ", (done) => {
+      request.get(base, (err, res, body) => {
+        expect(body).toContain("About Us");
 
         done();
       });
