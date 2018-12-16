@@ -15,11 +15,11 @@
   },
   "dependencies": {
     "dotenv": "^5.0.0",
+    "ejs": "^2.5.7",
     "express": "^4.16.2"
   },
   "engines": {
     "node": "10.14.1",
     "npm": "6.4.1"
   }
-
 }
