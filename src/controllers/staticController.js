@@ -3,6 +3,6 @@ module.exports = {
     res.render("static/index", {title: "Welcome to Bloccit"});
   },
   about(req, res, next){
-    res.render("static/index", {title: "About Us"});
+    res.render("static/about", {title: "About Us"});
   }
 }
