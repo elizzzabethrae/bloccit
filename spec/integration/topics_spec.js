@@ -91,4 +91,86 @@ describe("routes : topics", () => {
     });
   });
 
+  describe("GET /topics/:id", () => {
+
+    it("should render a view with the selected topic", (done) => {
+      request.get(`${base}${this.topic.id}`, (err, res, body) => {
+        expect(err).toBeNull();
+        expect(body).toContain("JS Frameworks");
+        done();
+      });
+    });
+
   });
+
+  describe("POST /topics/:id/destroy", () => {
+
+    it("should delete the topic with the associated ID", (done) => {
+
+//#1
+      Topic.all()
+      .then((topics) => {
+
+//#2
+        const topicCountBeforeDelete = topics.length;
+
+        expect(topicCountBeforeDelete).toBe(1);
+
+//#3
+        request.post(`${base}${this.topic.id}/destroy`, (err, res, body) => {
+          Topic.all()
+          .then((topics) => {
+            expect(err).toBeNull();
+            expect(topics.length).toBe(topicCountBeforeDelete - 1);
+            done();
+          })
+
+        });
+      });
+
+    });
+
+  });
+
+  describe("GET /topics/:id/edit", () => {
+
+    it("should render a view with an edit topic form", (done) => {
+      request.get(`${base}${this.topic.id}/edit`, (err, res, body) => {
+        expect(err).toBeNull();
+        expect(body).toContain("Edit Topic");
+        expect(body).toContain("JS Frameworks");
+        done();
+      });
+    });
+
+  });
+
+  describe("POST /topics/:id/update", () => {
+
+    it("should update the topic with the given values", (done) => {
+      const options = {
+          url: `${base}${this.topic.id}/update`,
+          form: {
+            title: "JavaScript Frameworks",
+            description: "There are a lot of them"
+          }
+        };
+//#1
+        request.post(options,
+          (err, res, body) => {
+
+          expect(err).toBeNull();
+//#2
+          Topic.findOne({
+            where: { id: this.topic.id }
+          })
+          .then((topic) => {
+            expect(topic.title).toBe("JavaScript Frameworks");
+            done();
+          });
+        });
+      });
+
+   });
+
+});
