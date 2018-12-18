@@ -47,5 +47,48 @@ describe("routes : topics", () => {
     //   });
     // });
 
+    describe("GET /topics/new", () => {
+
+      it("should render a new topic form", (done) => {
+        request.get(`${base}new`, (err, res, body) => {
+          expect(err).toBeNull();
+          expect(body).toContain("New Topic");
+          done();
+        });
+      });
+
+    });
+
+    describe("POST /topics/create", () => {
+      const options = {
+        url: `${base}create`,
+        form: {
+          title: "blink-182 songs",
+          description: "What's your favorite blink-182 song?"
+        }
+      };
+
+      it("should create a new topic and redirect", (done) => {
+
+//#1
+      request.post(options,
+
+//#2
+        (err, res, body) => {
+          Topic.findOne({where: {title: "blink-182 songs"}})
+          .then((topic) => {
+            expect(res.statusCode).toBe(303);
+            expect(topic.title).toBe("blink-182 songs");
+            expect(topic.description).toBe("What's your favorite blink-182 song?");
+            done();
+          })
+          .catch((err) => {
+            console.log(err);
+            done();
+          });
+        }
+      );
+    });
   });
-});
+
+  });
