@@ -1,9 +1,9 @@
-const Advertisement = require("./models").advertisement;
+const Advertisement = require("./models").Advertisement;
 
 module.exports = {
 
 //#1
-  getAllAdvertisment(callback){
+  getAllAdvertisement(callback){
     return Advertisement.all()
 
 //#2

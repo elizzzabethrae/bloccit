@@ -7,7 +7,7 @@
     <main class="container">
       <% include ../static/partials/navbar.ejs %>
 
-      <h1>Topics</h1>
+      <h1>Advertisement</h1>
 
       <ul class="list-group">
 <!-- #1 -->
