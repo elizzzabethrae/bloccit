@@ -1,10 +1,10 @@
-const advertisementQueries = require("../db/queries.advertisement.js");
+const advertisementQueries = require("../db/queries.advertisements.js");
 
 
 module.exports = {
   index(req, res, next){
 
-    advertisementQueries.getAllAdvertisement((err, advertisement) => {
+    advertisementQueries.getAllAdvertisements((err, advertisements) => {
 
 
           if(err){

@@ -3,12 +3,12 @@ const Advertisement = require("./models").Advertisement;
 module.exports = {
 
 //#1
-  getAllAdvertisement(callback){
+  getAllAdvertisements(callback){
     return Advertisement.all()
 
 //#2
-    .then((advertisement) => {
-      callback(null, advertisement);
+    .then((advertisements) => {
+      callback(null, advertisements);
     })
     .catch((err) => {
       callback(err);

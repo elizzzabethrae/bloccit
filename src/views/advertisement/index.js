@@ -7,14 +7,14 @@
     <main class="container">
       <% include ../static/partials/navbar.ejs %>
 
-      <h1>Advertisement</h1>
+      <h1>Advertisements</h1>
 
       <ul class="list-group">
 <!-- #1 -->
-        <% advertisement.forEach((advertisement) => { %>
+        <% advertisements.forEach((advertisement) => { %>
 <!-- #2 -->
           <li class="list-group-item">
-            <a href="/advertisement/<%= advertisement.id %>"> <%= advertisement.title %> </a>
+            <a href="/advertisements/<%= advertisement.id %>"> <%= advertisement.title %> </a>
           </li>
         <% }) %>
       </ul>

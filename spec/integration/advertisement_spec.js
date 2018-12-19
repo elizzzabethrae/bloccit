@@ -30,7 +30,7 @@ describe("routes : advertisement", () => {
 
   describe("GET /advertisement", () => {
 
-    it("should return a status code 200 and all advertisement", (done) => {
+    it("should return a status code 200 and all advertisements", (done) => {
       request.get(base, (err, res, body) => {
         expect(res.statusCode).toBe(200);
         expect(err).toBeNull();
