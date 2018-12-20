@@ -11,7 +11,6 @@ module.exports = {
       callback(null, advertisements);
     })
     .catch((err) => {
-      
       callback(err);
     })
   }
