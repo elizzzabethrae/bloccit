@@ -11,7 +11,7 @@ module.exports = {
             console.log(err);
             res.redirect(500, "static/index");
           } else {
-            res.render("advertisements/index", {advertisement});
+            res.render("advertisements/index", {advertisements});
           }
         })
 
