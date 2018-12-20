@@ -151,7 +151,7 @@ describe("routes : topics", () => {
       const options = {
           url: `${base}${this.topic.id}/update`,
           form: {
-            title: "JavaScript Frameworks",
+            title: "JS Frameworks",
             description: "There are a lot of them"
           }
         };
@@ -165,7 +165,7 @@ describe("routes : topics", () => {
             where: { id: this.topic.id }
           })
           .then((topic) => {
-            expect(topic.title).toBe("JavaScript Frameworks");
+            expect(topic.title).toBe("JS Frameworks");
             done();
           });
         });
