@@ -61,6 +61,18 @@ describe("#create()", () => {
   });
 });
 
+describe("#getPosts()", () => {
+
+  it("should return all posts associated with a topic", (done) => {
+    this.topic.getPosts()
+    .then((associatedPosts) => {
+      expect(associatedPosts.title).toContain("Node is challenging");
+      done();
+    });
+  });
+
+});
+
 //getPosts topic.getPosts
 //presents array of post objects
 
