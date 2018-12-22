@@ -47,7 +47,7 @@ describe("#create()", () => {
       description:"Pros and cons of javascript",
       topicId: this.topic.id
     })
-    .then((post) => {
+    .then((topic) => {
 
       expect(topic.title).toBe("Javascript was cool");
       expect(topic.description).toBe("Pros and cons of javascript");
@@ -67,7 +67,7 @@ describe("#getPosts()", () => {
     console.log(`DEBUG:\n${this.topic}\n\n`);
     this.topic.getPosts()
     .then((associatedPosts) => {
-      expect(associatedPosts.title).toContain("Node is challenging");
+      expect(associatedPosts[0].title).toContain("Node is challenging");
       done();
     });
   });
