@@ -64,6 +64,7 @@ describe("#create()", () => {
 describe("#getPosts()", () => {
 
   it("should return all posts associated with a topic", (done) => {
+    console.log(`DEBUG:\n${this.topic}\n\n`);
     this.topic.getPosts()
     .then((associatedPosts) => {
       expect(associatedPosts.title).toContain("Node is challenging");
