@@ -59,7 +59,7 @@ module.exports = {
         res.redirect(`/topics/${req.params.topicId}/posts/${req.params.id}`);
       }
     });
-  }
+  },
 
 
 }
