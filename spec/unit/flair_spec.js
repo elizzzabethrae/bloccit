@@ -32,7 +32,6 @@ describe("Flair", () => {
          Flair.create({
            name: "Movies",
            color: "Red",
-
            postId: this.post.id
          })
          .then((flair) => {
@@ -55,13 +54,14 @@ describe("Flair", () => {
       Flair.create({
         name: "Presents",
         color: "green",
-        postId: this.post.id
+        post: this.post
       })
       .then((flair) => {
 
 //#2
         expect(flair.name).toBe("Presents");
         expect(flair.color).toBe("green");
+        expect(postId).toBe("Christmas Movies");
         done();
 
       })
@@ -82,8 +82,9 @@ describe("Flair", () => {
     })
     .catch((err) => {
       expect(err.message).toContain("Flair.color cannot be null");
+      expect(err.message).toContain("Flair.postId cannot be null")
       done();
     })
-  });
+  })
 
 });

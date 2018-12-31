@@ -33,7 +33,7 @@ module.exports = {
             key: "id",         // attribute to use
             as: "postId"      // reference as topicId
           },
-        }
+        },
     });
   },
   down: (queryInterface, Sequelize) => {
