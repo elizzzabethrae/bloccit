@@ -1,7 +1,6 @@
 const request = require("request");
 const server = require("../../src/server");
 const base = "http://localhost:3000/topics";
-
 const sequelize = require("../../src/db/models/index").sequelize;
 const Topic = require("../../src/db/models").Topic;
 const Post = require("../../src/db/models").Post;
@@ -172,14 +171,15 @@ describe("routes : posts", () => {
     });
   });
 
-    it("should update the post with the given values", (done) => {
+  it("should update the post with the given values", (done) => {
       const options = {
         url: `${base}/${this.topic.id}/posts/${this.post.id}/update`,
         form: {
-          title: "Snowman Building Competition"
+          title: "Snowman Building Competition",
+          body: `${base}/${this.topic.id}/posts/${this.post.id}/body`
         }
       };
-      
+
       request.post(options,
         (err, res, body) => {
 
@@ -193,9 +193,9 @@ describe("routes : posts", () => {
           done();
         });
       });
-    });
-
   });
+
+});
 
 
 });
