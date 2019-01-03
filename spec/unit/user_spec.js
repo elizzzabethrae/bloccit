@@ -93,16 +93,4 @@ describe("User", () => {
 
   });
 
-  describe("GET /users/sign_in", () => {
-
-   it("should render a view with a sign in form", (done) => {
-     User.request.get(`${base}/sign_in`, (err, res, body) => {
-       expect(err).toBeNull();
-       expect(body).toContain("Sign in");
-       done();
-     });
-   });
-
- });
-
 });
