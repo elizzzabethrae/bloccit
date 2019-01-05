@@ -3,9 +3,7 @@ const Authorizer = require("../policies/topic");
 
 module.exports = {
   index(req, res, next){
-
           topicQueries.getAllTopics((err, topics) => {
-
             if(err){
               res.redirect(500, "static/index");
             } else {
