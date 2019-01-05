@@ -2,7 +2,6 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    up: (queryInterface, Sequelize) => {
       return queryInterface.addColumn(
         "Users",
         "role",
@@ -13,7 +12,6 @@ module.exports = {
           defaultValue: "member"
         }
       );
-    },
   },
 
   down: (queryInterface, Sequelize) => {
