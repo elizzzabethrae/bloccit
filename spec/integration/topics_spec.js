@@ -56,7 +56,7 @@ describe("admin user performing CRUD actions for Topic", () => {
    describe("GET /topics/new", () => {
 
      it("should render a view with a new topic form", (done) => {
-       request.get(`${base}new`, (err, res, body) => {
+       request.get(`${base}/topics/new`, (err, res, body) => {
          expect(err).toBeNull();
          expect(body).toContain("New Topic");
          done();

@@ -184,6 +184,7 @@ describe("routes : posts", () => {
                     body: "I love watching them melt slowly."
                 }
                 }, (err, res, body) => {
+                    console.log(err);
                     expect(res.statusCode).toBe(302);
                     done();
                 });
