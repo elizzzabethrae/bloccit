@@ -148,7 +148,7 @@ describe("admin user performing CRUD actions for Topic", () => {
        request.post({
          url: `${base}${this.topic.id}/update`,
          form: {
-           title: "JavaScript Frameworks",
+           title: "JS Frameworks",
            description: "There are a lot of them"
          }
        }, (err, res, body) => {
@@ -157,7 +157,7 @@ describe("admin user performing CRUD actions for Topic", () => {
            where: {id:1}
          })
          .then((topic) => {
-           expect(topic.title).toBe("JavaScript Frameworks");
+           expect(topic.title).toBe("JS Frameworks");
            done();
          });
        });
@@ -289,7 +289,7 @@ describe("admin user performing CRUD actions for Topic", () => {
        const options = {
          url: `${base}${this.topic.id}/update`,
          form: {
-           title: "JavaScript Frameworks",
+           title: "JS Frameworks",
            description: "There are a lot of them"
          }
        }

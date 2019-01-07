@@ -173,7 +173,7 @@ describe("routes : posts", () => {
         body: "I love watching them melt slowly."
       }
     }, (err, res, body) => {
-      expect(res.statusCode).toBe(302);
+      expect(res.statusCode).toBe(404);
       done();
     });
   });
@@ -186,17 +186,15 @@ describe("routes : posts", () => {
           body: `${base}/${this.topic.id}/posts/${this.post.id}/body`
         }
       };
-
       request.post(options,
         (err, res, body) => {
-
         expect(err).toBeNull();
-
         Post.findOne({
           where: {id: this.post.id}
         })
         .then((post) => {
           expect(post.title).toBe("Snowman Building Competition");
+          expect(post.body).toBe("So much snow!");
           done();
         });
       });
