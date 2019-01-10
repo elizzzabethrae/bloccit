@@ -55,50 +55,160 @@ describe("routes : votes", () => {
     });
   });
 
-  // test suites go here
   describe("guest attempting to vote on a post", () => {
 
-   beforeEach((done) => {    // before each suite in this context
-     request.get({
-       url: "http://localhost:3000/auth/fake",
-       form: {
-         userId: 0 // ensure no user in scope
-       }
-     },
-       (err, res, body) => {
-         done();
-       }
-     );
+     beforeEach((done) => {    // before each suite in this context
+       request.get({
+         url: "http://localhost:3000/auth/fake",
+         form: {
+           userId: 0 // ensure no user in scope
+         }
+       },
+         (err, res, body) => {
+           done();
+         }
+       );
 
+     });
+
+     describe("GET /topics/:topicId/posts/:postId/votes/upvote", () => {
+
+       it("should not create a new vote", (done) => {
+         const options = {
+           url: `${base}${this.topic.id}/posts/${this.post.id}/votes/upvote`
+         };
+         request.get(options,
+           (err, res, body) => {
+             Vote.findOne({            // look for the vote, should not find one.
+               where: {
+                 userId: this.user.id,
+                 postId: this.post.id
+               }
+             })
+             .then((vote) => {
+               expect(vote).toBeNull();
+               done();
+             })
+             .catch((err) => {
+               console.log(err);
+               done();
+             });
+           }
+         );
+       });
+
+     });
    });
 
-   describe("GET /topics/:topicId/posts/:postId/votes/upvote", () => {
+   describe("signed in user voting on a post", () => {
 
-     it("should not create a new vote", (done) => {
-       const options = {
-         url: `${base}${this.topic.id}/posts/${this.post.id}/votes/upvote`
-       };
-       request.get(options,
+     beforeEach((done) => {  // before each suite in this context
+       request.get({         // mock authentication
+         url: "http://localhost:3000/auth/fake",
+         form: {
+           role: "member",     // mock authenticate as member user
+           userId: this.user.id
+         }
+       },
          (err, res, body) => {
-           Vote.findOne({            // look for the vote, should not find one.
-             where: {
-               userId: this.user.id,
-               postId: this.post.id
-             }
-           })
-           .then((vote) => {
-             expect(vote).toBeNull();
-             done();
-           })
-           .catch((err) => {
-             console.log(err);
-             done();
-           });
+           done();
          }
        );
      });
 
-   });
- });
- 
+     describe("GET /topics/:topicId/posts/:postId/votes/upvote", () => {
+
+       it("should create an upvote", (done) => {
+         const options = {
+           url: `${base}${this.topic.id}/posts/${this.post.id}/votes/upvote`
+         };
+         request.get(options,
+           (err, res, body) => {
+             Vote.findOne({
+               where: {
+                 userId: this.user.id,
+                 postId: this.post.id
+               }
+             })
+             .then((vote) => {               // confirm that an upvote was created
+               expect(vote).not.toBeNull();
+               expect(vote.value).toBe(1);
+               expect(vote.userId).toBe(this.user.id);
+               expect(vote.postId).toBe(this.post.id);
+               done();
+             })
+             .catch((err) => {
+               console.log(err);
+               done();
+             });
+           }
+         );
+       });
+//voting assignment test 2
+      it("should not allow one user to vote on the same post multiple times", (done) => {
+        const options = {
+          url: `${base}${this.topic.id}/posts/${this.post.id}/votes/upvote`
+        };
+        request.get(options,
+          (err, res, body) => {
+            Vote.findOne({
+              where: {
+                userId: this.user.id,
+                postId: this.post.id
+              }
+            })
+            .then((vote) => {               // confirm that a downvote was created
+              expect(vote).not.toBeNull();
+              expect(vote.value).toBe(1);
+              expect(vote.userId).toBe(this.user.id);
+              expect(vote.postId).toBe(this.post.id);
+              expect(vote.value).toBe( 1 || -1)
+              done();
+            })
+            .catch((err) => {
+              console.log(err);
+              done();
+            });
+          })
+      })
+
+//hasUpVoteFor
+
+     });
+
+     describe("GET /topics/:topicId/posts/:postId/votes/downvote", () => {
+
+       it("should create a downvote", (done) => {
+         const options = {
+           url: `${base}${this.topic.id}/posts/${this.post.id}/votes/downvote`
+         };
+         request.get(options,
+           (err, res, body) => {
+             Vote.findOne({
+               where: {
+                 userId: this.user.id,
+                 postId: this.post.id
+               }
+             })
+             .then((vote) => {               // confirm that a downvote was created
+               expect(vote).not.toBeNull();
+               expect(vote.value).toBe(-1);
+               expect(vote.userId).toBe(this.user.id);
+               expect(vote.postId).toBe(this.post.id);
+               done();
+             })
+             .catch((err) => {
+               console.log(err);
+               done();
+             });
+           }
+         );
+       });
+
+//hasDownVoteFor
+     });
+
+   }); //end context for signed in user
+
+
 });

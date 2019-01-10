@@ -169,5 +169,32 @@ describe("#setUser()", () => {
    });
 
  });
+//voting assignment test 3
+ describe('#getPoints()', () => {
+   it('should return the number of votes associated with the post', (done) => {
+     Post.create({
+         title: "Posting Test",
+         body: "Posting body",
+         topicId: this.topic.id,
+         userId: this.user.id,
+         votes: [{
+             value: 1,
+             userId: this.user.id
+         }]
+     }, {
+         include: {
+             model: Vote,
+             as: "votes"
+         }
+     })
+     .then((post) => {
+         expect(post.getPoints()).toBe(1);
+         done();
+     })
+     .catch((err) => {
+         console.log(err);
+         done();
+     });
+ });
 
 });
