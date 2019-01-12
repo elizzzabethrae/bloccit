@@ -43,18 +43,19 @@ module.exports = {
     }
   },
   show(req, res, next){
-    topicQueries.getTopic(req.params.id, (err, topic) => {
-      if(err || topic == null){
-        res.redirect(404, "/");
-      } else {
-        res.render("topics/show", {topic});
-      }
-      });
-    },
+    console.log("WE ARE HERE -- params.id = " + req.params.id);
+     topicQueries.getTopic(req.params.id, (err, topic) => {
+       if(err || topic == null){
+         res.redirect(404, "/");
+       } else {
+         res.render("topics/show", {topic});
+       }
+     });
+   },
     destroy(req, res, next){
       topicQueries.deleteTopic(req, (err, topic) => {
         if(err){
-          res.redirect(err, `/topics/${req.params.id}`)
+          res.redirect(500, `/topics/${req.params.id}`)
         } else {
           res.redirect(303, "/topics")
         }

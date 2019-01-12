@@ -173,7 +173,7 @@ describe("routes : posts", () => {
         body: "I love watching them melt slowly."
       }
     }, (err, res, body) => {
-      expect(res.statusCode).toBe(404);
+      expect(res.statusCode).toBe(302);
       done();
     });
   });
