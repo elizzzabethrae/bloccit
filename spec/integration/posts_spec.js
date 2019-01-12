@@ -194,7 +194,7 @@ describe("routes : posts", () => {
         })
         .then((post) => {
           expect(post.title).toBe("Snowman Building Competition");
-    //      expect(post.body).toBe("So much snow!");
+        // expect(post.body).toBe("So much snow!");
           done();
         });
       });

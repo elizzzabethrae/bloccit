@@ -35,10 +35,11 @@ module.exports = {
     })
   },
 
-  deletePost(id, callback){
-    return Post.destroy({
-      where: { id }
-    })
+  deletePost(req, callback){
+      const id = req.params.id;
+      return Post.destroy({
+        where: { id }
+      })
     .then((deletedRecordsCount) => {
       callback(null, deletedRecordsCount);
     })
@@ -47,13 +48,12 @@ module.exports = {
     })
   },
 
-  updatePost(id, updatedPost, callback){
-    return Post.findById(id)
+  updatePost(req, updatedPost, callback){
+      return Post.findById(req.params.id)
     .then((post) => {
       if(!post){
         return callback("Post not found");
       }
-
       post.update(updatedPost, {
         fields: Object.keys(updatedPost)
       })
@@ -61,6 +61,7 @@ module.exports = {
         callback(null, post);
       })
       .catch((err) => {
+        console.log(err);
         callback(err);
       });
     });
