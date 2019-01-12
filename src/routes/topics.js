@@ -9,8 +9,8 @@ router.post("/topics/create", topicController.create);
 router.get("/topics/:id", topicController.show);
 router.post("/topics/:id/destroy", topicController.destroy);
 router.get("/topics/:id/edit", topicController.edit);
-router.post("/topics/:topicId/posts/:id/update", topicController.update);
-//moved this to posts.js, is that right????
+router.post("/topics/:id/update", topicController.update);
+
 
 
 
