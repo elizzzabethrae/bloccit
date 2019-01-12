@@ -9,6 +9,8 @@
     <main class="container">
       <h1><%= topic.title %></h1>
 
+      <p><%= topic.description %></p>
+
       <% if(currentUser) { %>
         <a href="/topics/<%= topic.id %>/posts/new" class="btn btn-success">New Post</a>
         <% if(currentUser.isAdmin()) { %>
@@ -19,8 +21,6 @@
           </form>
         <% } %>
       <% } %>
-
-      <p><%= topic.description %></p>
 
       <hr>
       <h1>Posts</h1>
