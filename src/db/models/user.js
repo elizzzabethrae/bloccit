@@ -38,6 +38,16 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "userId",
       as: "favorites"
     });
+    User.addScope("getFavoritedPosts", (userId) => {
+      return {
+        include: [{
+          model: models.Favorite
+        }],
+        where: { userId: userId},
+        limit: 5,
+        order: [[ 'createdAt', 'DESC' ]]
+      }
+    });
   };
   return User;
 };
