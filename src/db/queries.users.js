@@ -46,6 +46,12 @@ module.exports = {
           .then((comments) => {
  // #7
             result["comments"] = comments;
+
+              User.scope({ method: ["lastFiveFor", id]}).all()
+              .then((favorites) => {
+
+                result["favorites"] = favorites;
+              })
             callback(null, result);
           })
           .catch((err) => {
