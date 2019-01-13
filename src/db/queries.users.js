@@ -1,9 +1,10 @@
 // #1
-const User = require("./models").User;
+
 const bcrypt = require("bcryptjs");
 const Post = require("./models").Post;
 const Comment = require("./models").Comment;
 const Favorite = require("./models").Favorite;
+const User = require("./models").User;
 
 module.exports = {
 // #2
@@ -27,7 +28,7 @@ module.exports = {
   },
 
   getUser(id, callback){
- // #1
+    console.log(favorites);
     let result = {};
     User.findById(id)
     .then((user) => {
