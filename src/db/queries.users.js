@@ -47,7 +47,7 @@ module.exports = {
  // #7
             result["comments"] = comments;
 
-              User.scope({ method: ["lastFiveFor", id]}).all()
+              Favorite.scope({ method: ["lastFiveFor", id]}).all()
               .then((favorites) => {
 
                 result["favorites"] = favorites;
