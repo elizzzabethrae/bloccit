@@ -42,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
       return {
         include: [{
           model: models.Favorite
-        }],
+        }]
         where: {userId: userId},
         limit: 5,
         order: [["createdAt", "DESC"]]
