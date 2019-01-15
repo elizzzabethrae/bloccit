@@ -23,7 +23,8 @@ module.exports = (sequelize, DataTypes) => {
     Favorite.addScope("lastFiveFor", (userId) => {
       return {
         include: [{
-          model: models.Post
+          model: models.Post,
+          as: "post"
         }],
         where: { userId: userId},
         limit: 5,

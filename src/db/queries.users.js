@@ -49,11 +49,12 @@ module.exports = {
             result["comments"] = comments;
 
             Favorite.scope({method: ["lastFiveFor", id]}).all()
-            .then((favorites) => {
-
+            .then(favorites => {
               result["favorites"] = favorites;
+
+              callback(null, result);
+
             })
-            callback(null, result);
           })
           .catch((err) => {
             callback(err);
